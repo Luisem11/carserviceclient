@@ -1,15 +1,39 @@
-<mat-card>
-  <mat-card-title>Car List</mat-card-title>
-  <mat-card-content>
-    <mat-list>
-      <mat-list-item *ngFor="let car of cars">
-        <img mat-list-avatar src="{{car.giphyUrl}}" alt="{{car.name}}">
-        <h3 mat-line>
-          <a mat-button [routerLink]="['/car-edit', car.id]">{{car.name}}</a>
-        </h3>
-      </mat-list-item>
-    </mat-list>
-  </mat-card-content>
+<mat-grid-list cols="2" rowHeight="1:1">
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-title>Car List</mat-card-title>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item *ngFor="let car of cars">
+            <img mat-list-avatar src="{{car.giphyUrl}}" alt="{{car.name}}">
+            <h3 mat-line>
+              <a mat-button [routerLink]="['/car-edit', car.id]">{{car.name}}</a>
+            </h3>
+            <p mat-line > Owner Dni: {{car.ownerDni ? car.ownerDni : notOwner}} </p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
 
-  <button mat-fab color="primary" [routerLink]="['/car-add']">Add</button>
-</mat-card>
+      <button mat-fab color="primary" [routerLink]="['/car-add']">Add</button>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-title>Owner List</mat-card-title>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item *ngFor="let owner of owners">
+            <h3 mat-line>
+              <a mat-button [routerLink]="['/owner-edit', owner.dni]"> {{owner.dni}} {{owner.name}}</a>              
+            </h3>                       
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+
+      <button mat-fab color="primary" [routerLink]="['/owner-add']">Add</button>
+      <button mat-fab color="primary" [routerLink]="['/owner-list']">More</button>
+    
+    </mat-card>
+  </mat-grid-tile>
+  
+</mat-grid-list>

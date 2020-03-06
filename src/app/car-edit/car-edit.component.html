@@ -6,9 +6,21 @@
       <mat-card-content>
         <input type="hidden" name="href" [(ngModel)]="car.href">
         <mat-form-field>
-          <input matInput placeholder="Car Name" [(ngModel)]="car.name"
-                 required name="name" #name>
+          <input matInput placeholder="Car Name" [(ngModel)]="car.name" 
+                 required name="name" #name >
         </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Car Owner</mat-label>
+          <mat-select  [(ngModel)]="car.ownerDni"
+          required name="ownerDni" #ownerDni > 
+            <mat-option>--None--</mat-option>
+            <mat-option value="{{owner.dni}}" *ngFor="let owner of owners" >
+              {{owner.dni}} 
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="primary" type="submit"
