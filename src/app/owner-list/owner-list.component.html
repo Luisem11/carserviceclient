@@ -1,0 +1,23 @@
+<div>
+    Selected: {{ selectedOptions | json }}
+  </div>
+<mat-card>
+    <mat-card-title>Owner List</mat-card-title>
+    <mat-card-content>
+        <mat-selection-list #owns [(ngModel)]="selectedOptions">
+            <mat-list-option *ngFor="let owner of owners" #sel [value]= "owner.dni">
+                <h3 mat-line>
+                    <a mat-button [routerLink]="['/owner-edit', owner.dni]"> {{owner.dni}}--{{owner.name}}--{{owner.profession}}</a>              
+                  </h3>
+            </mat-list-option>
+          </mat-selection-list>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <button mat-raised-button color="primary" [routerLink]="['/owner-add']">Add</button>
+        <button mat-raised-button color="warn" [routerLink]="['/owner-list']" (click)="remove()" 
+            [disabled]="!(owns.selectedOptions.selected.length > 0)">Delete Selected</button>
+        <a mat-button routerLink="/car-list">Back</a>
+      </mat-card-actions> 
+    
+</mat-card>
